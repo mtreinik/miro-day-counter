@@ -1,0 +1,8 @@
+{
+  "name": "miro-day-counter",
+  "version": "1.0.0",
+  "description": "Miro day counter",
+  "main": "index.html",
+  "author": "Mikko Reinikainen <mikko.reinikainen@iki.fi>",
+  "license": "MIT"
+}
