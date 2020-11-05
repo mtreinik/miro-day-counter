@@ -5,11 +5,8 @@
     <script src="https://miro.com/app/static/sdk.1.1.js"></script>
 
     <style>
-        .rtb-sidebar-caption {
-            font-size: 14px;
-            font-weight: bold;
-            color: rgba(0, 0, 0, 0.8);
-            padding: 24px 0 0 24px;
+        body {
+            font-family: SansSerif, SansSerif, Helvetica, Arial;
         }
         .error {
             color: red
@@ -19,12 +16,21 @@
 </head>
 
 <body>
-<div class="rtb-sidebar-caption">Day Counter</div>
-<label for="day-counter-start-date">Start counter from date:</label><input type="date" id="day-counter-start-date">
+<h2>Day Counter</h2>
+
+<h3>Selected stickers</h3>
+<div class="widget-info" id="day-counter-widget-info"></div>
+
+<h3>Insert day counter</h3>
+<label for="day-counter-start-date">Start date:</label>
+<br/>
+<input type="date" id="day-counter-start-date">
+<br/>
 <button onclick="insertDayCounters()">Insert day counter to selected stickers</button>
-<div class="error" id="day-counter-error" ></div>
+<div class="error" id="day-counter-error"></div>
 
 <script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="days.js"></script>
 <script type="text/javascript" src="sidebar.js"></script>
 
 </body>
