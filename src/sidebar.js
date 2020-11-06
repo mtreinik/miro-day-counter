@@ -26,9 +26,10 @@ async function getSelectedWidgets() {
   const dayCounters = []
   selectedWidgets.forEach(widget => {
     if (widget.metadata[APP_ID]) {
-      const { startDate, descriptionBefore, descriptionAfter } = widget.metadata[APP_ID].startDate
-      if (startDate) {
-        const days = startDate ? getDaysNow(new Date(startDate)) : ''
+      const { startDate: startDateStr, descriptionBefore, descriptionAfter } = widget.metadata[APP_ID]
+      if (startDateStr) {
+        const startDate = new Date(startDateStr)
+        const days = startDate ? getDaysNow(startDate) : ''
         const text = getText(days, descriptionBefore, descriptionAfter)
         dayCounters.push({startDate, text})
       }
