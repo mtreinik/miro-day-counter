@@ -8,11 +8,17 @@
         body {
             font-family: sans-serif, SansSerif, Helvetica, Arial;
         }
+        h3 {
+            margin-top: 2em;
+        }
         input {
-            padding-bottom: 0.5em;
+            margin-bottom: 1em;
         }
         .error {
             color: red
+        }
+        .footer {
+            margin-top: 3em;
         }
     </style>
     <title>sidebar</title>
@@ -25,18 +31,18 @@
 <div class="widget-info" id="day-counter-widget-info"></div>
 
 <h3>Insert day counter</h3>
-<label for="day-counter-description-before">Description before day count:</label><br/>
+<label for="day-counter-description-before">Description before day coun:</label><br/>
 <input type="text" id="day-counter-description-before"><br/>
-<label for="day-counter-start-date">Start date:</label><br/>
+<label for="day-counter-start-date">Start date</label><br/>
 <input type="date" id="day-counter-start-date"><br/>
-<label for="day-counter-description-after">Description after day count:</label><br/>
+<label for="day-counter-description-after">Description after day count</label><br/>
 <input type="text" id="day-counter-description-after"><br/>
 <button onclick="insertDayCounters()">Insert day counter to selected stickers</button>
 <div class="error" id="day-counter-error"></div>
 
-<br/>
-<br/>
-<a href="https://github.com/mtreinik/miro-day-counter" style="font-size: small">About Day Counter plugin</a>
+<div class="footer">
+    <a href="https://github.com/mtreinik/miro-day-counter" style="font-size: small">About Day Counter plugin</a>
+</div>
 <script type="text/javascript" src="common.js"></script>
 <script type="text/javascript" src="sidebar.js"></script>
 
