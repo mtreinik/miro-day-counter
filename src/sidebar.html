@@ -27,9 +27,14 @@
 <body>
 <h2 class="miro-h2">Day Counter</h2>
 
+<div id="day-counter-select" class="miro-input-field miro-input-field--small">
+    <button class="miro-btn miro-btn--primary miro-btn--small" onclick="selectDayCounterStickers()">Select all day counter stickers</button>
+    <div class="status-text" id="day-counter-select-error"></div>
+</div>
+
 <h3 class="miro-h3">Selected stickers</h3>
 
-<div class="widget-info" id="day-counter-widget-info"></div>
+<div id="day-counter-selected-stickers"></div>
 
 <h3 class="miro-h3">Insert day counter</h3>
 
@@ -50,7 +55,7 @@
 
 <div id="day-counter-insert" class="miro-input-field miro-input-field--small">
   <button class="miro-btn miro-btn--primary miro-btn--small" onclick="insertDayCounters()">Insert day counter to selected stickers</button>
-  <div class="status-text" id="day-counter-error"></div>
+  <div class="status-text" id="day-counter-insert-error"></div>
 </div>
 
 <div class="footer">

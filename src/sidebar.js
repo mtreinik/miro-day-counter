@@ -1,17 +1,32 @@
-const errorElement = document.getElementById('day-counter-error')
-const dayCounterInsertElement = document.getElementById('day-counter-insert')
+const selectErrorElement = document.getElementById('day-counter-select-error')
+const insertErrorElement = document.getElementById('day-counter-insert-error')
+const insertElement = document.getElementById('day-counter-insert')
+
+async function selectDayCounterStickers() {
+  selectErrorElement.innerText = ''
+  const stickers = await miro.board.widgets.get({type: "STICKER"})
+  const dayCounterStickers = stickers.filter(
+    sticker => typeof sticker.text === 'string' && sticker.metadata[APP_ID] && sticker.metadata[APP_ID].startDate
+  )
+  const widgetIds = await dayCounterStickers.map(widget => widget.id)
+  if (widgetIds.length === 0) {
+    selectErrorElement.innerText = 'No day counter stickers found.'
+  } else {
+    await miro.board.selection.selectWidgets(widgetIds)
+  }
+}
 
 async function insertDayCounters() {
-  errorElement.innerText = ''
-  dayCounterInsertElement.className = 'miro-input-field'
+  insertElement.className = 'miro-input-field'
+  insertErrorElement.innerText = ''
   const startDate = new Date(document.getElementById('day-counter-start-date').value)
   const descriptionBefore = document.getElementById('day-counter-description-before').value
   const descriptionAfter = document.getElementById('day-counter-description-after').value
   const selectedWidgets = await miro.board.selection.get()
 
   if (!selectedWidgets || selectedWidgets.length === 0) {
-    dayCounterInsertElement.className += ' miro-input-field--invalid'
-    errorElement.innerText = 'Please select a sticker for inserting day counter.'
+    insertElement.className += ' miro-input-field--invalid'
+    insertErrorElement.innerText = 'Please select a sticker for inserting day counter.'
     return
   }
   selectedWidgets.forEach(widget => {
@@ -40,8 +55,8 @@ async function getSelectedWidgets() {
     }
   })
 
-  const widgetInfoElement = document.getElementById('day-counter-widget-info')
-  widgetInfoElement.innerHTML = dayCounters.length === 0
+  const selectedStickersElement = document.getElementById('day-counter-selected-stickers')
+  selectedStickersElement.innerHTML = dayCounters.length === 0
     ? '<span style="color: #827F9B">No selected stickers.</span>'
     : '<ul style="list-style: none;">' + dayCounters.map(
     dayCounter => '<li>' +
