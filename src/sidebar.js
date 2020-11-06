@@ -4,11 +4,14 @@ const insertElement = document.getElementById('day-counter-insert')
 
 async function selectDayCounterStickers() {
   selectErrorElement.innerText = ''
-  const stickers = await miro.board.widgets.get({type: "STICKER"})
+  const stickers = await miro.board.widgets.get({ type: 'STICKER' })
   const dayCounterStickers = stickers.filter(
-    sticker => typeof sticker.text === 'string' && sticker.metadata[APP_ID] && sticker.metadata[APP_ID].startDate
+    (sticker) =>
+      typeof sticker.text === 'string' &&
+      sticker.metadata[APP_ID] &&
+      sticker.metadata[APP_ID].startDate
   )
-  const widgetIds = await dayCounterStickers.map(widget => widget.id)
+  const widgetIds = await dayCounterStickers.map((widget) => widget.id)
   if (widgetIds.length === 0) {
     selectErrorElement.innerText = 'No day counter stickers found.'
   } else {
@@ -20,8 +23,12 @@ async function insertDayCounters() {
   insertElement.className = 'miro-input-field'
   insertErrorElement.innerText = ''
   const dirtyStartDate = document.getElementById('day-counter-start-date').value
-  const dirtyDescriptionBefore = document.getElementById('day-counter-description-before').value
-  const dirtyDescriptionAfter = document.getElementById('day-counter-description-after').value
+  const dirtyDescriptionBefore = document.getElementById(
+    'day-counter-description-before'
+  ).value
+  const dirtyDescriptionAfter = document.getElementById(
+    'day-counter-description-after'
+  ).value
   const startDate = new Date(DOMPurify.sanitize(dirtyStartDate))
   const descriptionBefore = DOMPurify.sanitize(dirtyDescriptionBefore)
   const descriptionAfter = DOMPurify.sanitize(dirtyDescriptionAfter)
@@ -30,12 +37,17 @@ async function insertDayCounters() {
 
   if (!selectedWidgets || selectedWidgets.length === 0) {
     insertElement.className += ' miro-input-field--invalid'
-    insertErrorElement.innerText = 'Please select a sticker for inserting day counter.'
+    insertErrorElement.innerText =
+      'Please select a sticker for inserting day counter.'
     return
   }
-  selectedWidgets.forEach(widget => {
+  selectedWidgets.forEach((widget) => {
     if (typeof widget.text === 'string') {
-      widget.metadata[APP_ID] = {startDate, descriptionBefore, descriptionAfter}
+      widget.metadata[APP_ID] = {
+        startDate,
+        descriptionBefore,
+        descriptionAfter,
+      }
       widget.capabilities.editable = false
     }
   })
@@ -46,33 +58,50 @@ async function insertDayCounters() {
 async function getSelectedWidgets() {
   const selectedWidgets = await miro.board.selection.get()
   const dayCounters = []
-  selectedWidgets.forEach(widget => {
+  selectedWidgets.forEach((widget) => {
     const stickerBackgroundColor = widget.style.stickerBackgroundColor
     if (widget.metadata[APP_ID] && widget.metadata[APP_ID].startDate) {
-      const {startDate: startDateStr, descriptionBefore, descriptionAfter} = widget.metadata[APP_ID]
+      const {
+        startDate: startDateStr,
+        descriptionBefore,
+        descriptionAfter,
+      } = widget.metadata[APP_ID]
       const startDate = new Date(startDateStr)
       const days = startDate ? getDaysNow(startDate) : ''
       const text = getText(days, descriptionBefore, descriptionAfter)
-      dayCounters.push({startDate, text, stickerBackgroundColor})
+      dayCounters.push({ startDate, text, stickerBackgroundColor })
     } else {
-      dayCounters.push({text: widget.plainText, stickerBackgroundColor})
+      dayCounters.push({ text: widget.plainText, stickerBackgroundColor })
     }
   })
 
-  const selectedStickersElement = document.getElementById('day-counter-selected-stickers')
-  selectedStickersElement.innerHTML = dayCounters.length === 0
-    ? '<span style="color: #827F9B">No selected stickers.</span>'
-    : '<ul style="list-style: none;">' + dayCounters.map(
-    dayCounter => '<li>' +
-      '<span style="font-size: xx-large; color: ' + dayCounter.stickerBackgroundColor + '">■</span>' +
-      '<br />' +
-      dayCounter.text + '' +
-      '<br />' +
-      (dayCounter.startDate
-        ? '(day counter starts at ' + dayCounter.startDate.toISOString().split('T')[0] + ')'
-        : '(no day counter)') +
-      '</li>'
-  ).join('') + '</ul>'
+  const selectedStickersElement = document.getElementById(
+    'day-counter-selected-stickers'
+  )
+  selectedStickersElement.innerHTML =
+    dayCounters.length === 0
+      ? '<span style="color: #827F9B">No selected stickers.</span>'
+      : '<ul style="list-style: none;">' +
+        dayCounters
+          .map(
+            (dayCounter) =>
+              '<li>' +
+              '<span style="font-size: xx-large; color: ' +
+              dayCounter.stickerBackgroundColor +
+              '">■</span>' +
+              '<br />' +
+              dayCounter.text +
+              '' +
+              '<br />' +
+              (dayCounter.startDate
+                ? '(day counter starts at ' +
+                  dayCounter.startDate.toISOString().split('T')[0] +
+                  ')'
+                : '(no day counter)') +
+              '</li>'
+          )
+          .join('') +
+        '</ul>'
 }
 
 miro.onReady(async () => {

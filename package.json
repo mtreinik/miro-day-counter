@@ -7,9 +7,16 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "cp src/* dist; cp node_modules/dompurify/dist/purify.min.js dist"
+    "build": "cp src/* dist; cp node_modules/dompurify/dist/purify.min.js dist",
+    "prettier": "node_modules/prettier/bin-prettier.js -w --config prettierrc.json **/*.js"
   },
   "dependencies": {
     "dompurify": "^2.2.2"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "devDependencies": {
+    "prettier": "^2.1.2"
   }
 }
