@@ -1,10 +1,10 @@
-# Miro day counter
+# Miro Day Counter
 
-This is a web-plugin that adds a new tool to Miro board's bottom bar:
+This is a web-plugin that adds a new Day Counter tool to bottom bar of a [Miro](https://miro.com/) board:
 
 ![bottom bar](https://raw.githubusercontent.com/mtreinik/miro-day-counter/main/docs/bottombar.png)
 
-The day counter tool allows user to insert an automatically updating day counter to stickers:
+The tool can add an automatically updating day counter to stickers:
 
 ![bottom bar](https://raw.githubusercontent.com/mtreinik/miro-day-counter/main/docs/sidebar.png)
 
