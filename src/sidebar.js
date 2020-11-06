@@ -17,7 +17,8 @@ async function insertDayCounters() {
       widget.capabilities.editable = false
     }
   })
-  miro.board.widgets.update(selectedWidgets)
+  await miro.board.widgets.update(selectedWidgets)
+  await updateDayCounters()
 }
 
 async function getSelectedWidgets() {

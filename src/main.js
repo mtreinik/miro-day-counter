@@ -10,22 +10,6 @@ const icon = '<g transform="translate(0,-273)" id="layer1"> ' +
   '  <path d="m 5.9457693,284.08747 -0.6928709,8.73018"  fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" /> ' +
   '</g>'
 
-async function updateDayCounters() {
-  const stickers = await miro.board.widgets.get({type: 'sticker'})
-  stickers.forEach(sticker => {
-    if (sticker.metadata[APP_ID]) {
-      const startDateStr = sticker.metadata[APP_ID].dayCounterStartDate
-      if (startDateStr) {
-        const days = getDaysNow(new Date(startDateStr))
-        if (days !== sticker.text) {
-          sticker.text = days
-          miro.board.widgets.update([sticker])
-        }
-      }
-    }
-  })
-}
-
 miro.onReady(async () => {
   miro.initialize({
     extensionPoints: {
@@ -39,6 +23,6 @@ miro.onReady(async () => {
       }
     }
   })
-  setInterval(updateDayCounters, 5000)
+  setInterval(updateDayCounters, 60 * 1000)
   updateDayCounters()
 })
