@@ -1,10 +1,10 @@
-const widgetDateElement = document.getElementById('day-counter-start-date')
 const errorElement = document.getElementById('day-counter-error')
-const widgetInfoElement = document.getElementById('day-counter-widget-info')
 
 async function insertDayCounters() {
   errorElement.innerText = ''
-  const startDate = new Date(widgetDateElement.value)
+  const startDate = new Date(document.getElementById('day-counter-start-date').value)
+  const descriptionBefore = document.getElementById('day-counter-description-before').value
+  const descriptionAfter = document.getElementById('day-counter-description-after').value
   const selectedWidgets = await miro.board.selection.get()
 
   if (!selectedWidgets || selectedWidgets.length === 0) {
@@ -13,7 +13,7 @@ async function insertDayCounters() {
   }
   selectedWidgets.forEach(widget => {
     if (typeof widget.text === 'string') {
-      widget.metadata[APP_ID] = {dayCounterStartDate: startDate}
+      widget.metadata[APP_ID] = { startDate, descriptionBefore, descriptionAfter }
       widget.capabilities.editable = false
     }
   })
@@ -26,17 +26,20 @@ async function getSelectedWidgets() {
   const dayCounters = []
   selectedWidgets.forEach(widget => {
     if (widget.metadata[APP_ID]) {
-      const startDateStr = widget.metadata[APP_ID].dayCounterStartDate
-      const startDate = new Date(startDateStr)
-      const days = startDateStr ? getDaysNow(startDate) : ''
-      dayCounters.push({startDate, days})
+      const { startDate, descriptionBefore, descriptionAfter } = widget.metadata[APP_ID].startDate
+      if (startDate) {
+        const days = startDate ? getDaysNow(new Date(startDate)) : ''
+        const text = getText(days, descriptionBefore, descriptionAfter)
+        dayCounters.push({startDate, text})
+      }
     }
   })
 
+  const widgetInfoElement = document.getElementById('day-counter-widget-info')
   widgetInfoElement.innerHTML = dayCounters.length === 0
     ? 'No selected day counter stickers.'
     : '<ul>' + dayCounters.map(
-    dayCounter => '<li>' + dayCounter.startDate.toISOString() + ': ' + dayCounter.days + '</li>'
+    dayCounter => '<li>' + dayCounter.startDate.toISOString() + ': ' + dayCounter.text + '</li>'
   ).join('') + '</ul>'
 }
 
