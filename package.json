@@ -4,5 +4,12 @@
   "description": "Miro day counter",
   "main": "index.html",
   "author": "Mikko Reinikainen <mikko.reinikainen@iki.fi>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "cp src/* dist; cp node_modules/dompurify/dist/purify.min.js dist"
+  },
+  "dependencies": {
+    "dompurify": "^2.2.2"
+  }
 }

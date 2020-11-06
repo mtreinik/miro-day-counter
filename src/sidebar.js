@@ -19,9 +19,13 @@ async function selectDayCounterStickers() {
 async function insertDayCounters() {
   insertElement.className = 'miro-input-field'
   insertErrorElement.innerText = ''
-  const startDate = new Date(document.getElementById('day-counter-start-date').value)
-  const descriptionBefore = document.getElementById('day-counter-description-before').value
-  const descriptionAfter = document.getElementById('day-counter-description-after').value
+  const dirtyStartDate = document.getElementById('day-counter-start-date').value
+  const dirtyDescriptionBefore = document.getElementById('day-counter-description-before').value
+  const dirtyDescriptionAfter = document.getElementById('day-counter-description-after').value
+  const startDate = new Date(DOMPurify.sanitize(dirtyStartDate))
+  const descriptionBefore = DOMPurify.sanitize(dirtyDescriptionBefore)
+  const descriptionAfter = DOMPurify.sanitize(dirtyDescriptionAfter)
+
   const selectedWidgets = await miro.board.selection.get()
 
   if (!selectedWidgets || selectedWidgets.length === 0) {
