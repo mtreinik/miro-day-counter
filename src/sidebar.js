@@ -22,6 +22,7 @@ async function selectDayCounterStickers() {
 async function insertDayCounters() {
   insertElement.className = 'miro-input-field'
   insertErrorElement.innerText = ''
+
   const dirtyStartDate = document.getElementById('day-counter-start-date').value
   const dirtyDescriptionBefore = document.getElementById(
     'day-counter-description-before'
@@ -42,7 +43,7 @@ async function insertDayCounters() {
     return
   }
   selectedWidgets.forEach((widget) => {
-    if (typeof widget.text === 'string') {
+    if (typeof widget.text === 'string' && widget.type === 'STICKER') {
       widget.metadata[APP_ID] = {
         startDate,
         descriptionBefore,
@@ -56,8 +57,8 @@ async function insertDayCounters() {
 }
 
 async function getSelectedWidgets() {
+  const dayCounterStickers = []
   const selectedWidgets = await miro.board.selection.get()
-  const dayCounters = []
   selectedWidgets.forEach((widget) => {
     const stickerBackgroundColor = widget.style.stickerBackgroundColor
     if (widget.metadata[APP_ID] && widget.metadata[APP_ID].startDate) {
@@ -69,20 +70,20 @@ async function getSelectedWidgets() {
       const startDate = new Date(startDateStr)
       const days = startDate ? getDaysNow(startDate) : ''
       const text = getText(days, descriptionBefore, descriptionAfter)
-      dayCounters.push({ startDate, text, stickerBackgroundColor })
+      dayCounterStickers.push({ startDate, text, stickerBackgroundColor })
     } else {
-      dayCounters.push({ text: widget.plainText, stickerBackgroundColor })
+      dayCounterStickers.push({
+        text: widget.plainText,
+        stickerBackgroundColor,
+      })
     }
   })
 
-  const selectedStickersElement = document.getElementById(
-    'day-counter-selected-stickers'
-  )
-  selectedStickersElement.innerHTML =
-    dayCounters.length === 0
+  document.getElementById('day-counter-selected-stickers').innerHTML =
+    dayCounterStickers.length === 0
       ? '<span style="color: #827F9B">No selected stickers.</span>'
       : '<ul style="list-style: none;">' +
-        dayCounters
+        dayCounterStickers
           .map(
             (dayCounter) =>
               '<li>' +
