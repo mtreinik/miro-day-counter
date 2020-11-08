@@ -6,7 +6,7 @@ This is a web-plugin that adds a new Day Counter tool to bottom bar of a [Miro](
 
 The tool can add an automatically updating day counter to stickers:
 
-![bottom bar](https://raw.githubusercontent.com/mtreinik/miro-day-counter/main/docs/sidebar.png)
+![using the tool](https://raw.githubusercontent.com/mtreinik/miro-day-counter/main/docs/day-counter.gif)
 
 ## Building
 
