@@ -25,5 +25,5 @@ miro.onReady(async () => {
     },
   })
   setInterval(updateDayCounters, 60 * 1000)
-  updateDayCounters()
+  await updateDayCounters()
 })
