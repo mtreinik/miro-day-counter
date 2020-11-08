@@ -8,7 +8,25 @@ The tool can add an automatically updating day counter to stickers:
 
 ![bottom bar](https://raw.githubusercontent.com/mtreinik/miro-day-counter/main/docs/sidebar.png)
 
-## Developing a Miro web-plugin
+## Building
+
+You can build the plugin with these steps:
+
+1. Clone this repo
+1. `nvm use`
+1. `yarn install`
+1. `yarn build`
+
+The app files will be copied to `dist/`
+
+## Dependencies
+
+- `dompurify` is used to sanitize user inputs
+- `prettier` is used to formatting the source code 
+
+## Resources
+
+Here are some resources that were referenced for developing this web-plugin:
 
 - https://developers.miro.com/docs/getting-started
 - https://developers.miro.com/docs/web-plugins-features
