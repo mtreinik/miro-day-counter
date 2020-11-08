@@ -26,7 +26,7 @@ The app files will be copied to `dist/`
 
 ## Resources
 
-Here are some resources that were referenced for developing this web-plugin:
+Here are some resources that were used while developing this web-plugin:
 
 - https://developers.miro.com/docs/getting-started
 - https://developers.miro.com/docs/web-plugins-features
