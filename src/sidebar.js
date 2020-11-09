@@ -54,6 +54,7 @@ async function insertDayCounters() {
   })
   await miro.board.widgets.update(selectedWidgets)
   await updateDayCounters()
+  await getSelectedWidgets()
 }
 
 async function getSelectedWidgets() {
