@@ -8,6 +8,12 @@ The tool can add an automatically updating day counter to stickers:
 
 ![using the tool](https://raw.githubusercontent.com/mtreinik/miro-day-counter/main/docs/day-counter.gif)
 
+## Authorization link
+
+The following link is used to ask the user to authorize the plugin to have scopes `board:read` and `board:write`: 
+
+https://miro.com/oauth/authorize/?response_type=token&client_id=3074457351323246950&redirect_uri=https://mikkoreinikainen.fi/2020/miro-day-counter/auth-success.html
+
 ## Building
 
 You can build the plugin with these steps:
@@ -31,3 +37,4 @@ Here are some resources that were used while developing this web-plugin:
 - https://developers.miro.com/docs/getting-started
 - https://developers.miro.com/docs/web-plugins-features
 - https://developers.miro.com/docs/web-plugin-examples
+- https://github.com/miroapp/app-examples/tree/master/implicit-flow-example

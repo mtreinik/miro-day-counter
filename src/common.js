@@ -1,5 +1,3 @@
-const APP_ID = '3074457351323246950'
-
 async function updateDayCounters() {
   const stickers = await miro.board.widgets.get({ type: 'sticker' })
   stickers.forEach((sticker) => {

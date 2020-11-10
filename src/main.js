@@ -11,6 +11,10 @@ const icon =
   '  <path d="m 5.9457693,284.08747 -0.6928709,8.73018"  fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" /> ' +
   '</g>'
 
+function openSidebar() {
+  miro.board.ui.openLeftSidebar('sidebar.html')
+}
+
 miro.onReady(async () => {
   miro.initialize({
     extensionPoints: {
@@ -18,8 +22,18 @@ miro.onReady(async () => {
         title: 'Day Counter',
         svgIcon: icon,
         positionPriority: 1,
-        onClick: () => {
-          miro.board.ui.openLeftSidebar('sidebar.html')
+        onClick: async () => {
+          const authorized = await miro.isAuthorized()
+          if (authorized) {
+            openSidebar()
+          } else {
+            const res = miro.board.ui.openModal('not-authorized.html')
+            if (res === 'success') {
+              openSidebar()
+            } else {
+              console.log('could not authorize')
+            }
+          }
         },
       },
     },

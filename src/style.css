@@ -1,0 +1,14 @@
+body {
+    font-family: sans-serif, SansSerif, Helvetica, Arial;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+h3 {
+    margin-top: 2em;
+}
+input {
+    margin-bottom: 1em;
+}
+.footer {
+    margin-top: 3em;
+}
