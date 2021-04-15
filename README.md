@@ -32,7 +32,7 @@ The plugin can add an automatically updating day counter to stickers:
 
 The following link is used to ask the user to authorize the plugin to have scopes `board:read` and `board:write`: 
 
-https://miro.com/oauth/authorize/?response_type=token&client_id=3074457351323246950&redirect_uri=https://mikkoreinikainen.fi/2020/miro-day-counter/auth-success.html
+https://miro.com/oauth/authorize/?response_type=code&client_id=3074457351323246950&redirect_uri=/confirm-app-install/
 
 ### Building
 
