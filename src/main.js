@@ -24,16 +24,11 @@ miro.onReady(async () => {
         positionPriority: 1,
         onClick: async () => {
           const authorized = await miro.isAuthorized()
-          if (authorized) {
-            openSidebar()
-          } else {
-            const res = miro.board.ui.openModal('not-authorized.html')
-            if (res === 'success') {
-              openSidebar()
-            } else {
-              console.log('could not authorize')
-            }
+          if (!authorized) {
+            await miro.requestAuthorization()
           }
+          
+          openSidebar()
         },
       },
     },
