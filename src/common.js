@@ -1,5 +1,6 @@
 async function updateDayCounters() {
   const stickers = await miro.board.widgets.get({ type: 'sticker' })
+  const stickersToUpdate = []
   stickers.forEach((sticker) => {
     if (sticker.metadata[APP_ID]) {
       const {
@@ -12,11 +13,12 @@ async function updateDayCounters() {
         const text = getText(days, descriptionBefore, descriptionAfter)
         if (text !== sticker.text) {
           sticker.text = text
-          miro.board.widgets.update([sticker])
+          stickersToUpdate.push(sticker)
         }
       }
     }
   })
+  await miro.board.widgets.update(stickersToUpdate)
 }
 
 function getDays(fromDate, toDate) {
