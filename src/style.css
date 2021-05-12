@@ -9,6 +9,11 @@ h3 {
 input {
     margin-bottom: 1em;
 }
+.page-container {
+    height: 100%;
+    overflow-y: auto;
+}
 .footer {
     margin-top: 3em;
+    margin-bottom: 1em;
 }

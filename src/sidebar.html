@@ -10,46 +10,48 @@
 </head>
 
 <body>
-<h2 class="miro-h2">Day Counter</h2>
+<div class="page-container">
+    <h2 class="miro-h2">Day Counter</h2>
 
-<div id="day-counter-select" class="miro-input-field miro-input-field--small">
-    <button class="miro-btn miro-btn--primary miro-btn--small" onclick="selectDayCounterStickers()">Select all day counter stickers</button>
-    <div class="status-text" id="day-counter-select-error"></div>
+    <div id="day-counter-select" class="miro-input-field miro-input-field--small">
+        <button class="miro-btn miro-btn--primary miro-btn--small" onclick="selectDayCounterStickers()">Select all day counter stickers</button>
+        <div class="status-text" id="day-counter-select-error"></div>
+    </div>
+
+    <h3 class="miro-h3">Selected stickers</h3>
+
+    <div id="day-counter-selected-stickers"></div>
+
+    <h3 class="miro-h3">Insert day counter</h3>
+
+    <div class="miro-input-field miro-input-field--small">
+        <label for="day-counter-start-date">Start date</label>
+        <input class="miro-input miro-input--primary" type="date" id="day-counter-start-date">
+    </div>
+
+    <div class="miro-input-field miro-input-field--small">
+      <label for="day-counter-description-before">Text before day counter</label>
+      <input class="miro-input miro-input--primary" type="text" id="day-counter-description-before">
+    </div>
+
+    <div class="miro-input-field miro-input-field--small">
+      <label for="day-counter-description-after">Text after day counter</label>
+      <input class="miro-input miro-input--primary" type="text" id="day-counter-description-after">
+    </div>
+
+    <div id="day-counter-insert" class="miro-input-field miro-input-field--small">
+      <button class="miro-btn miro-btn--primary miro-btn--small" onclick="insertDayCounters()">Insert day counter to selected stickers</button>
+      <div class="status-text" id="day-counter-insert-error"></div>
+    </div>
+
+    <div class="footer">
+        <a href="https://github.com/mtreinik/miro-day-counter" target="_blank" style="font-size: small">About Day Counter plugin</a>
+    </div>
+
+    <script type="text/javascript" src="config.js"></script>
+    <script type="text/javascript" src="common.js"></script>
+    <script type="text/javascript" src="sidebar.js"></script>
+
 </div>
-
-<h3 class="miro-h3">Selected stickers</h3>
-
-<div id="day-counter-selected-stickers"></div>
-
-<h3 class="miro-h3">Insert day counter</h3>
-
-<div class="miro-input-field miro-input-field--small">
-    <label for="day-counter-start-date">Start date</label>
-    <input class="miro-input miro-input--primary" type="date" id="day-counter-start-date">
-</div>
-
-<div class="miro-input-field miro-input-field--small">
-  <label for="day-counter-description-before">Text before day counter</label>
-  <input class="miro-input miro-input--primary" type="text" id="day-counter-description-before">
-</div>
-
-<div class="miro-input-field miro-input-field--small">
-  <label for="day-counter-description-after">Text after day counter</label>
-  <input class="miro-input miro-input--primary" type="text" id="day-counter-description-after">
-</div>
-
-<div id="day-counter-insert" class="miro-input-field miro-input-field--small">
-  <button class="miro-btn miro-btn--primary miro-btn--small" onclick="insertDayCounters()">Insert day counter to selected stickers</button>
-  <div class="status-text" id="day-counter-insert-error"></div>
-</div>
-
-<div class="footer">
-    <a href="https://github.com/mtreinik/miro-day-counter" style="font-size: small">About Day Counter plugin</a>
-</div>
-
-<script type="text/javascript" src="config.js"></script>
-<script type="text/javascript" src="common.js"></script>
-<script type="text/javascript" src="sidebar.js"></script>
-
 </body>
 </html>
