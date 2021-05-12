@@ -2,9 +2,9 @@
 
 Day Counter allows you to add an automatically updating day counter to stickers on a [Miro](https://miro.com/) board.
 
-It is a web-plugin that adds a new Day Counter tool to bottom bar:
+It is a web-plugin that adds a new Day Counter tool to the apps of the toolbar:
 
-![bottom bar](https://raw.githubusercontent.com/mtreinik/miro-day-counter/main/docs/bottombar.png)
+![day counter in the toolbar](https://raw.githubusercontent.com/mtreinik/miro-day-counter/main/docs/toolbar.png)
 
 The plugin can add an automatically updating day counter to stickers:
 
@@ -14,7 +14,8 @@ The plugin can add an automatically updating day counter to stickers:
 
 ### How to use Day Counter
 
-1. Click on the Day Counter tool at the bottom bar of a Miro board. A dialog opens at the left side of the screen.
+1. Install the Day Counter plugin from the [Miro marketplace](https://miro.com/marketplace/)
+1. Find the Day Counter tool on the apps menu (three dots icon) of a Miro board. A dialog opens at the left side of the screen.
 1. Select one or multiple stickers on the board
 1. Enter a start date for the counter.
 1. Optionally add text to show before or after the counter.
