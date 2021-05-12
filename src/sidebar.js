@@ -82,7 +82,7 @@ async function getSelectedWidgets() {
 
   document.getElementById('day-counter-selected-stickers').innerHTML =
     dayCounterStickers.length === 0
-      ? '<span style="color: #827F9B">No selected stickers.</span>'
+      ? '<span style="color: #827F9B">Please select stickers with day counters to see details.</span>'
       : '<ul style="list-style: none;">' +
         dayCounterStickers
           .map(
